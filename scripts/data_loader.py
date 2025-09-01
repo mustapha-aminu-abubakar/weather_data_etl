@@ -114,4 +114,5 @@ def load_data(spark, fact_df, dim_df):
 
 
 if __name__ == "__main__":
+    create_database()
     create_tables()

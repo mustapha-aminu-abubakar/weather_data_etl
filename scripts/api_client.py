@@ -9,15 +9,49 @@ API_KEY = os.getenv('WEATHER_API_KEY')
 if not API_KEY:
     raise ValueError("Weather API key is not set in the .env file")
 
-BASE_URL = "http://api.weatherapi.com/v1/"
+BASE_URL = "http://api.weatherapi.com/v1/current.json"
 
 CITIES = [
-    {"name": "Kano"},
-    {"name": "Kaduna"},
-    {"name": "Lagos"},
-    {"name": "Abuja"},
-    {"name": "Calabar"}
+    "Abakaliki",   # Ebonyi
+    "Abeokuta",    # Ogun
+    "Ado-Ekiti",   # Ekiti
+    "Akure",       # Ondo
+    "Asaba",       # Delta
+    "Awka",        # Anambra
+    "Bauchi",      # Bauchi
+    "Benin City",  # Edo
+    "Birnin Kebbi",# Kebbi
+    "Calabar",     # Cross River
+    "Damaturu",    # Yobe
+    "Dutse",       # Jigawa
+    "Ekiti",       # (already included Ado-Ekiti)
+    "Enugu",       # Enugu
+    "Gombe",       # Gombe
+    "Gusau",       # Zamfara
+    "Ibadan",      # Oyo
+    "Ilorin",      # Kwara
+    "Jalingo",     # Taraba
+    "Jos",         # Plateau
+    "Kaduna",      # Kaduna
+    "Kano",        # Kano
+    "Katsina",     # Katsina
+    "Lafia",       # Nasarawa
+    "Lokoja",      # Kogi
+    "Maiduguri",   # Borno
+    "Makurdi",     # Benue
+    "Minna",       # Niger
+    "Osogbo",      # Osun
+    "Owerri",      # Imo
+    "Port Harcourt", # Rivers
+    "Sokoto",      # Sokoto
+    "Umuahia",     # Abia
+    "Uyo",         # Akwa Ibom
+    "Yenagoa",     # Bayelsa
+    "Yola",        # Adamawa
+    "Zaria",       # (Kaduna has Kaduna City, not Zaria)
+    "Abuja"        # Federal Capital Territory
 ]
+
 
 def fetch_weather_data():
     weather_data = []
@@ -25,7 +59,7 @@ def fetch_weather_data():
     for city in CITIES:
         params = {
             'key': API_KEY,
-            'q': f"{city['name']}",
+            'q': city,
             'aqi': 'no',
         }
         
