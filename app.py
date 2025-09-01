@@ -14,7 +14,7 @@ DB_HOST = os.getenv('MYSQL_HOST')
 DB_PORT = os.getenv('MYSQL_PORT')
 DB_NAME = os.getenv('MYSQL_DB')
 
-DATABASE_URL = f"mysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+# DATABASE_URL = f"mysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 @app.route('/')
 def index():
@@ -26,14 +26,14 @@ def get_weather_data():
         host=DB_HOST,
         user=DB_USER,
         password=DB_PASSWORD,
-        database=DB_NAME) as connection:
+        database=DB_NAME,
+        port=DB_PORT) as connection:
         
         cursor = connection.cursor()
         result = cursor.execute("""
         SELECT c.city_name, w.date, w.temperature, w.humidity
         FROM weather_measurements w
         JOIN cities c ON w.city_id = c.city_id
-        WHERE w.date BETWEEN '2023-08-21' AND '2023-08-30'
         ORDER BY c.city_name, w.date
         """)
 

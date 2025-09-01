@@ -52,21 +52,23 @@ def create_tables():
                 CREATE TABLE IF NOT EXISTS cities (
                     city_id INT PRIMARY KEY,
                     city_name VARCHAR(255),
-                    country VARCHAR(2),
+                    country VARCHAR(20),
                     latitude FLOAT,
                     longitude FLOAT
                 )
             """)
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS weather_measurements (
-                    id INT PRIMARY KEY,
-                    date DATE,
-                    time TIME,
-                    city_id INT,
-                    temperature FLOAT,
-                    humidity INT,
-                    pressure INT,
-                    wind_speed FLOAT
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    city VARCHAR(100) NOT NULL,
+                    city_id INT NOT NULL
+                    temperature FLOAT NOT NULL,
+                    humidity FLOAT NOT NULL,
+                    date DATE NOT NULL,
+                    time TIME NOT NULL,
+                    pressure INT NOT NULL,
+                    wind_speed FLOAT NOT NULL,
+                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 )
             """)
         logger.info("Tables created successfully.")

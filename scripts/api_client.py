@@ -76,10 +76,11 @@ def fetch_weather_data():
                 "humidity": data["current"]["humidity"],
                 "pressure": data["current"]["pressure_mb"],
                 "wind_speed": data["current"]["wind_kph"],
-                "datetime": data["location"]["localtime"].replace(" ", "T")
+                "date": data["location"]["localtime"].split(" ")[0],
+                "time": data["location"]["localtime"].split(" ")[1],
             })
         else:
-            print(f"Error fetching data for {city['name']}: {response.status_code}")
+            print(f"Error fetching data for {city}: {response.status_code}")
     
     return weather_data
 

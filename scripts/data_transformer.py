@@ -11,7 +11,8 @@ def transform_weather_data(spark, raw_json):
         "humidity": raw_json["current"]["humidity"],
         "pressure": raw_json["current"]["pressure_mb"],
         "wind_speed": raw_json["current"]["wind_kph"],
-        "datetime": raw_json["location"]["localtime"].replace(" ", "T")
+        "date": raw_json["location"]["localtime"].split(" ")[0],
+        "time": raw_json["location"]["localtime"].split(" ")[1]
     }
 
     # Convert to DataFrame

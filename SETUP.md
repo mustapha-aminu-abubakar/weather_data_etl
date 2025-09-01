@@ -42,16 +42,13 @@ sudo mysql_secure_installation
 
 Enter the MySQL shell:
 ```bash
-mysql -u root
+sudo mysql -u root
 ```
 
 Then run:
-
-CREATE DATABASE weather_data;
-CREATE USER 'weather_user'@'localhost' IDENTIFIED BY 'password123';
-GRANT ALL PRIVILEGES ON weather_data.* TO 'weather_user'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
+```bash
+SOURCE schema.sql;
+```
 
 ## 5. Initialize Airflow Database
 ```bash
