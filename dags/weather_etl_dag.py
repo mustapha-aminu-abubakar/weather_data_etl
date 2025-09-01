@@ -65,7 +65,7 @@ dag = DAG(
     'weather_etl_pipeline',
     default_args=default_args,
     description='A DAG for weather data ETL process using Spark',
-    schedule_interval=timedelta(hours=1),
+    schedule_interval=timedelta(minutes=1),
 )
 
 with dag:
