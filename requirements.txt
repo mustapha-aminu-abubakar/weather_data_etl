@@ -1,0 +1,9 @@
+apache-airflow
+psycopg2-binary
+SQLAlchemy
+requests
+pandas
+python-dotenv
+pyspark
+Flask
+mysql-connector-python
