@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, render_template
-# from sqlalchemy import create_engine, text
 import pandas as pd
 from dotenv import load_dotenv
 import os
