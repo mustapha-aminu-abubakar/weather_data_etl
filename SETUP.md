@@ -46,8 +46,10 @@ sudo mysql -u root
 ```
 
 Then run:
-```bash
-SOURCE schema.sql;
+```sql
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 ```
 
 ## 5. Initialize Airflow Database

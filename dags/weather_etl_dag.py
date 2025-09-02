@@ -50,7 +50,7 @@ def etl_process():
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime.today(),
+    'start_date': datetime(year=2025, month=9, day=2),
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,
