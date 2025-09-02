@@ -8,7 +8,20 @@ Go to the repo: weather-data-integration
 
 Click Code → Codespaces → New Codespace on main
 
-## 2. Create Virtual Environment
+## 2. Install Java and Setup Env Variables
+Install Java 11
+```bash
+sudo apt update
+sudo apt install openjdk-11-jdk
+java -version
+```
+Setup variables
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+```
+
+## 3. Create Virtual Environment
 
 Inside Codespaces terminal:
 ```bash
@@ -16,29 +29,29 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-## 3. Install Dependencies
+## 4. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-## 4. Install & Configure MySQL
-### 4.1 Install MySQL
+## 5. Install & Configure MySQL
+### 5.1 Install MySQL
 ```bash
 sudo apt update && sudo apt upgrade -y
 sudo apt install mysql-server mysql-client -y
 ```
 
-### 4.2 Start MySQL Service
+### 5.2 Start MySQL Service
 ```bash
 sudo service mysql start
 ```
 
-### 4.3 Secure MySQL (optional for dev)
+### 5.3 Secure MySQL (optional for dev)
 ```bash
 sudo mysql_secure_installation
 ```
 
-### 4.4 Create Database and User
+### 5.4 Create Database and User
 
 Enter the MySQL shell:
 ```bash
@@ -52,12 +65,12 @@ GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 ```
 
-## 5. Initialize Airflow Database
+## 6. Initialize Airflow Database
 ```bash
 airflow db init
 ```
 
-## 6. Create Airflow Admin User
+## 7. Create Airflow Admin User
 ```bash
 airflow users create \
     --username admin \
@@ -68,7 +81,7 @@ airflow users create \
     --email admin@example.com
 ```
 
-## 7. Start Airflow Services
+## 8. Start Airflow Services
 
 Open two terminals in the workspace.
 
@@ -82,7 +95,7 @@ airflow scheduler
 airflow webserver -p 8080
 ```
 
-## 8. Run Flask App
+## 9. Run Flask App
 ```bash
 flask run --host=0.0.0.0 --port=5000
 ```
