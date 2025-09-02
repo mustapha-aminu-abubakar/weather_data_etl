@@ -2,21 +2,22 @@ from pyspark.sql.functions import col, to_date, to_timestamp, round, dense_rank
 from pyspark.sql.window import Window
 
 def transform_weather_data(spark, raw_json):    
-    record = {
-        "city_name": raw_json["location"]["name"],
-        "country": raw_json["location"]["country"],
-        "latitude": raw_json["location"]["lat"],
-        "longitude": raw_json["location"]["lon"],
-        "temperature": raw_json["current"]["temp_c"],
-        "humidity": raw_json["current"]["humidity"],
-        "pressure": raw_json["current"]["pressure_mb"],
-        "wind_speed": raw_json["current"]["wind_kph"],
-        "date": raw_json["location"]["localtime"].split(" ")[0],
-        "time": raw_json["location"]["localtime"].split(" ")[1]
-    }
+    # record = {
+    #     "city_id": i 
+    #     "city_name": raw_json["location"]["name"],
+    #     "country": raw_json["location"]["country"],
+    #     "latitude": raw_json["location"]["lat"],
+    #     "longitude": raw_json["location"]["lon"],
+    #     "temperature": raw_json["current"]["temp_c"],
+    #     "humidity": raw_json["current"]["humidity"],
+    #     "pressure": raw_json["current"]["pressure_mb"],
+    #     "wind_speed": raw_json["current"]["wind_kph"],
+    #     "date": raw_json["location"]["localtime"].split(" ")[0],
+    #     "time": raw_json["location"]["localtime"].split(" ")[1]
+    # }
 
     # Convert to DataFrame
-    df = spark.createDataFrame([record])
+    df = spark.createDataFrame(raw_json)
     
     fact_columns = ['date', 'time', 'city_id', 'temperature', 'humidity', 'pressure', 'wind_speed']
     fact_df = df.select(fact_columns)
@@ -35,6 +36,7 @@ if __name__ == "__main__":
 
     test_data = [
         {
+            'city_id': 1,
             'city_name': 'New York',
             'country': 'US',
             'latitude': 40.7128,
@@ -43,9 +45,11 @@ if __name__ == "__main__":
             'humidity': 60,
             'pressure': 1015,
             'wind_speed': 5.1,
-            'datetime': '2023-05-01T12:00:00'
+            'date': '2023-05-01',
+            'time': '12:00:00'
         },
         {
+            'city_id': 2,
             'city_name': 'London',
             'country': 'GB',
             'latitude': 51.5074,
@@ -54,7 +58,8 @@ if __name__ == "__main__":
             'humidity': 72,
             'pressure': 1008,
             'wind_speed': 4.2,
-            'datetime': '2023-05-01T12:00:00'
+            'date': '2023-05-01',
+            'time': '12:00:00'
         }
     ]
 

@@ -2,6 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 from datetime import datetime
+import time
 
 load_dotenv()
 
@@ -24,7 +25,6 @@ CITIES = [
     "Calabar",     # Cross River
     "Damaturu",    # Yobe
     "Dutse",       # Jigawa
-    "Ekiti",       # (already included Ado-Ekiti)
     "Enugu",       # Enugu
     "Gombe",       # Gombe
     "Gusau",       # Zamfara
@@ -56,31 +56,34 @@ CITIES = [
 def fetch_weather_data():
     weather_data = []
     
-    for city in CITIES:
+    for i, city in enumerate(CITIES, start=1):
         params = {
             'key': API_KEY,
             'q': city,
             'aqi': 'no',
         }
         
-        response = requests.get(BASE_URL, params=params)
-        
-        if response.status_code == 200:
-            data = response.json()
-            weather_data.append({
-                "city_name": data["location"]["name"],
-                "country": data["location"]["country"],
-                "latitude": data["location"]["lat"],
-                "longitude": data["location"]["lon"],
-                "temperature": data["current"]["temp_c"],
-                "humidity": data["current"]["humidity"],
-                "pressure": data["current"]["pressure_mb"],
-                "wind_speed": data["current"]["wind_kph"],
-                "date": data["location"]["localtime"].split(" ")[0],
-                "time": data["location"]["localtime"].split(" ")[1],
-            })
-        else:
-            print(f"Error fetching data for {city}: {response.status_code}")
+        try:
+            response = requests.get(BASE_URL, params=params)
+            
+            if response.status_code == 200:
+                data = response.json()
+                weather_data.append({
+                    "city_id": i,
+                    "city_name": data["location"]["name"],
+                    "country": data["location"]["country"],
+                    "latitude": data["location"]["lat"],
+                    "longitude": data["location"]["lon"],
+                    "temperature": data["current"]["temp_c"],
+                    "humidity": data["current"]["humidity"],
+                    "pressure": data["current"]["pressure_mb"],
+                    "wind_speed": data["current"]["wind_kph"],
+                    "date": data["location"]["localtime"].split(" ")[0],
+                    "time": data["location"]["localtime"].split(" ")[1],
+                })
+        except Exception as e:
+            print(f"Error fetching data for {city}: {response.status_code}, {e}")
+        time.sleep(500)
     
     return weather_data
 

@@ -60,15 +60,15 @@ def create_tables():
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS weather_measurements (
                     id INT AUTO_INCREMENT PRIMARY KEY,
-                    city VARCHAR(100) NOT NULL,
-                    city_id INT NOT NULL
+                    city_id INT NOT NULL,
                     temperature FLOAT NOT NULL,
                     humidity FLOAT NOT NULL,
                     date DATE NOT NULL,
                     time TIME NOT NULL,
                     pressure INT NOT NULL,
                     wind_speed FLOAT NOT NULL,
-                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (city_id) REFERENCES cities(city_id)
                 )
             """)
         logger.info("Tables created successfully.")

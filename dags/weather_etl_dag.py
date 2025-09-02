@@ -28,10 +28,6 @@ def create_spark_session():
         .config("spark.jars", "../mysql-connector-j-9.4.0.jar") \
         .config("spark.driver.extraClassPath", "../mysql-connector-j-9.4.0.jar") \
         .config("spark.executor.extraClassPath", "../mysql-connector-j-9.4.0.jar") \
-        .config("spark.hadoop.javax.jdo.option.ConnectionDriverName", "org.mysql.Driver") \
-        .config("spark.hadoop.javax.jdo.option.ConnectionURL", f"jdbc:mysql://{DB_HOST}:{DB_PORT}/{DB_NAME}?useSSL=false&serverTimezone=UTC") \
-        .config("spark.hadoop.javax.jdo.option.ConnectionUserName", DB_USER) \
-        .config("spark.hadoop.javax.jdo.option.ConnectionPassword", DB_PASSWORD) \
         .master("local[*]") \
         .getOrCreate()
 
@@ -43,7 +39,7 @@ def etl_process():
         if not raw_data:
             raise ValueError("No data fetched from the API")
         fact_df, dim_df = transform_weather_data(spark, raw_data)
-        load_data(fact_df, dim_df)
+        load_data(spark, fact_df, dim_df)
     except Exception as e:
         print(f"Error in ETL process: {str(e)}")
         raise
@@ -65,7 +61,7 @@ dag = DAG(
     'weather_etl_pipeline',
     default_args=default_args,
     description='A DAG for weather data ETL process using Spark',
-    schedule_interval=timedelta(minutes=1),
+    schedule_interval=timedelta(minutes=5),
 )
 
 with dag:
