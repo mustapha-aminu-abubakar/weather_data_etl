@@ -51,12 +51,12 @@
         d3.json('/api/weather_data').then(data => {
             // Process data
             const cities = [...new Set(data.map(d => d.city_name))];
-            const parseDate = d3.timeParse("%Y-%m-%d");
+            // const parseDateTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
             data = data.filter(d => {
-                d.date = parseDate(d.date);
+                d.datetime = new Date(d.datetime);
                 d.temperature = +d.temperature;
                 d.humidity = +d.humidity;
-                return d.date && !isNaN(d.temperature) && !isNaN(d.humidity);
+                return d.datetime && !isNaN(d.temperature) && !isNaN(d.humidity);
             });
 
             // Temperature Chart
@@ -83,13 +83,13 @@
                 const y = d3.scaleLinear().range([innerHeight, 0]);
                 const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-                x.domain(d3.extent(data, d => d.date));
+                x.domain(d3.extent(data, d => d.datetime));
                 y.domain([0, d3.max(data, yValue)]);
 
                 const line = d3.line()
-                    .x(d => x(d.date))
+                    .x(d => x(d.datetime))
                     .y(d => y(yValue(d)))
-                    .defined(d => !isNaN(x(d.date)) && !isNaN(y(yValue(d))));
+                    .defined(d => !isNaN(x(d.datetime)) && !isNaN(y(yValue(d))));
 
                 cities.forEach(city => {
                     const cityData = data.filter(d => d.city_name === city);
@@ -103,7 +103,7 @@
 
                 svg.append("g")
                     .attr("transform", `translate(0,${innerHeight})`)
-                    .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b %d")));
+                    .call(d3.axisBottom(x).tickFormat(d3.timeFormat("%b %d %H:%M")));
 
                 svg.append("g")
                     .call(d3.axisLeft(y));
