@@ -53,3 +53,6 @@ bq-key.json
 airflow.cfg
 airflow.db
 airflow-webserver.pid
+
+#java.jar
+mysql-connector-j-9.4.0.jar
