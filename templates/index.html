@@ -51,7 +51,6 @@
         d3.json('/api/weather_data').then(data => {
             // Process data
             const cities = [...new Set(data.map(d => d.city_name))];
-            // const parseDateTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
             data = data.filter(d => {
                 d.datetime = new Date(d.datetime);
                 d.temperature = +d.temperature;
