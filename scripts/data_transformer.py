@@ -2,20 +2,6 @@ from pyspark.sql.functions import col, to_date, to_timestamp, round, dense_rank
 from pyspark.sql.window import Window
 
 def transform_weather_data(spark, raw_json):    
-    # record = {
-    #     "city_id": i 
-    #     "city_name": raw_json["location"]["name"],
-    #     "country": raw_json["location"]["country"],
-    #     "latitude": raw_json["location"]["lat"],
-    #     "longitude": raw_json["location"]["lon"],
-    #     "temperature": raw_json["current"]["temp_c"],
-    #     "humidity": raw_json["current"]["humidity"],
-    #     "pressure": raw_json["current"]["pressure_mb"],
-    #     "wind_speed": raw_json["current"]["wind_kph"],
-    #     "date": raw_json["location"]["localtime"].split(" ")[0],
-    #     "time": raw_json["location"]["localtime"].split(" ")[1]
-    # }
-
     # Convert to DataFrame
     df = spark.createDataFrame(raw_json)
     
@@ -24,6 +10,7 @@ def transform_weather_data(spark, raw_json):
     
     dim_columns = ['city_id', 'city_name', 'country', 'latitude', 'longitude']
     dim_df = df.select(dim_columns).dropDuplicates()
+    print('---------------data transformer worked-------------------------')
     
     return fact_df, dim_df
 

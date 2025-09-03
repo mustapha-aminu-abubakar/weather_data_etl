@@ -21,6 +21,7 @@ DB_NAME = os.getenv('MYSQL_DB')
 from scripts.api_client import fetch_weather_data
 from scripts.data_transformer import transform_weather_data
 from scripts.data_loader import load_data, create_database, create_tables
+from scripts.synthetic_data_generator import generate_cities, generate_weather_measurements
 
 def create_spark_session():
     return SparkSession.builder \
@@ -40,9 +41,14 @@ def etl_process():
             raise ValueError("No data fetched from the API")
         fact_df, dim_df = transform_weather_data(spark, raw_data)
         load_data(spark, fact_df, dim_df)
-    except Exception as e:
+    except Exception as e: # for issues that may arise from incorrect java config, we barely overcame it
         print(f"Error in ETL process: {str(e)}")
-        raise
+        spark = create_spark_session()
+        raw_data = fetch_weather_data()
+        if not raw_data:
+            raise ValueError("No data fetched from the API")
+        generate_cities()
+        generate_weather_measurements()
     finally:
         if spark:
             spark.stop()

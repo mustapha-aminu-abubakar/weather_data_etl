@@ -100,5 +100,12 @@ airflow webserver -p 8080
 ```bash
 flask run --host=0.0.0.0 --port=5000
 ```
+### mySql database 
+![Apache Airflow UI Showing Dag Runs](mysql_db_screenshot.png "Optional title text")
 
-✅ Now Airflow runs the DAGs, MySQL stores the weather data, and Flask serves it on the web.
+
+### Apache Airflow UI Showing Dag Runs
+![Apache Airflow UI Showing Dag Runs](airflow_dags_screenshot.png "Optional title text")
+
+### Chart Visualization on Browser
+![Chart Visualization on Browser](visualization_screenshot.png "Optional title text")

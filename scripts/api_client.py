@@ -19,37 +19,37 @@ CITIES = [
     "Akure",       # Ondo
     "Asaba",       # Delta
     "Awka",        # Anambra
-    "Bauchi",      # Bauchi
-    "Benin City",  # Edo
-    "Birnin Kebbi",# Kebbi
-    "Calabar",     # Cross River
-    "Damaturu",    # Yobe
-    "Dutse",       # Jigawa
-    "Enugu",       # Enugu
-    "Gombe",       # Gombe
-    "Gusau",       # Zamfara
-    "Ibadan",      # Oyo
-    "Ilorin",      # Kwara
-    "Jalingo",     # Taraba
-    "Jos",         # Plateau
-    "Kaduna",      # Kaduna
-    "Kano",        # Kano
-    "Katsina",     # Katsina
-    "Lafia",       # Nasarawa
-    "Lokoja",      # Kogi
-    "Maiduguri",   # Borno
-    "Makurdi",     # Benue
-    "Minna",       # Niger
-    "Osogbo",      # Osun
-    "Owerri",      # Imo
-    "Port Harcourt", # Rivers
-    "Sokoto",      # Sokoto
-    "Umuahia",     # Abia
-    "Uyo",         # Akwa Ibom
-    "Yenagoa",     # Bayelsa
-    "Yola",        # Adamawa
-    "Zaria",       # (Kaduna has Kaduna City, not Zaria)
-    "Abuja"        # Federal Capital Territory
+    # "Bauchi",      # Bauchi
+    # "Benin City",  # Edo
+    # "Birnin Kebbi",# Kebbi
+    # "Calabar",     # Cross River
+    # "Damaturu",    # Yobe
+    # "Dutse",       # Jigawa
+    # "Enugu",       # Enugu
+    # "Gombe",       # Gombe
+    # "Gusau",       # Zamfara
+    # "Ibadan",      # Oyo
+    # "Ilorin",      # Kwara
+    # "Jalingo",     # Taraba
+    # "Jos",         # Plateau
+    # "Kaduna",      # Kaduna
+    # "Kano",        # Kano
+    # "Katsina",     # Katsina
+    # "Lafia",       # Nasarawa
+    # "Lokoja",      # Kogi
+    # "Maiduguri",   # Borno
+    # "Makurdi",     # Benue
+    # "Minna",       # Niger
+    # "Osogbo",      # Osun
+    # "Owerri",      # Imo
+    # "Port Harcourt", # Rivers
+    # "Sokoto",      # Sokoto
+    # "Umuahia",     # Abia
+    # "Uyo",         # Akwa Ibom
+    # "Yenagoa",     # Bayelsa
+    # "Yola",        # Adamawa
+    # "Zaria",       # (Kaduna has Kaduna City, not Zaria)
+    # "Abuja"        # Federal Capital Territory
 ]
 
 

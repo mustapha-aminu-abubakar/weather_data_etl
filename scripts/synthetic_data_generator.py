@@ -84,7 +84,7 @@ def generate_cities():
     conn.close()
     return cities_data
 
-def generate_weather_measurements(n, start_time=None):
+def generate_weather_measurements(n=20, start_time=None):
     """
     Generate n synthetic weather measurements for a given city_id in 5 minute intervals.
     """
